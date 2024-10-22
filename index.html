@@ -139,12 +139,20 @@
             }
         }, 1000);
 
+        // Función para verificar si el navegador soporta pantalla completa
+        function supportsFullscreen() {
+            return document.fullscreenEnabled || 
+                   document.mozFullScreenEnabled || 
+                   document.webkitFullscreenEnabled || 
+                   document.msFullscreenEnabled;
+        }
+
         // Funcionalidad de pantalla completa
         const fullscreenToggle = document.getElementById('fullscreen-toggle');
         let isFullscreen = false;
 
         fullscreenToggle.addEventListener('click', function() {
-            if (!isFullscreen) {
+            if (!isFullscreen && supportsFullscreen()) {
                 // Ingresar en pantalla completa
                 if (document.documentElement.requestFullscreen) {
                     document.documentElement.requestFullscreen();
