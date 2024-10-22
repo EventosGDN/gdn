@@ -14,6 +14,15 @@
             padding-top: 50px; /* Ajustado para más espacio arriba */
             margin: 0;
         }
+        #fullscreen-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            z-index: 999;
+        }
         #countdown {
             font-size: 50px;
             margin-top: 20px; /* Espaciado entre el texto y la cuenta regresiva */
@@ -66,6 +75,8 @@
     </style>
 </head>
 <body>
+
+    <div id="fullscreen-toggle">+</div> <!-- Botón para pantalla completa -->
 
     <div class="heading">Llega el auténtico</div>
     <div class="main-title">Black <span>Friday</span></div>
@@ -127,6 +138,40 @@
                 document.getElementById("countdown").innerHTML = "¡Evento Comenzado!";
             }
         }, 1000);
+
+        // Funcionalidad de pantalla completa
+        const fullscreenToggle = document.getElementById('fullscreen-toggle');
+        let isFullscreen = false;
+
+        fullscreenToggle.addEventListener('click', function() {
+            if (!isFullscreen) {
+                // Ingresar en pantalla completa
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                    document.documentElement.msRequestFullscreen();
+                }
+                isFullscreen = true;
+                fullscreenToggle.textContent = "-"; // Cambiar el "+" a "-" cuando esté en pantalla completa
+            } else {
+                // Salir de pantalla completa
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) { // Firefox
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { // IE/Edge
+                    document.msExitFullscreen();
+                }
+                isFullscreen = false;
+                fullscreenToggle.textContent = "+"; // Cambiar el "-" a "+" cuando se salga de pantalla completa
+            }
+        });
     </script>
 
 </body>
