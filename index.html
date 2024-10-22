@@ -11,66 +11,94 @@
             color: #ffffff;
             font-family: 'Poppins', sans-serif;
             text-align: center;
-            padding-top: 50px;
+            padding-top: 5vh; /* Ajustado para espacio proporcional arriba */
             margin: 0;
         }
         #fullscreen-toggle {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 30px;
+            top: 2vh;
+            left: 2vw;
+            font-size: 3vw;
             color: white;
             cursor: pointer;
             z-index: 999;
         }
         #countdown {
-            font-size: 50px;
-            margin-top: 20px;
+            font-size: 5vw;
+            margin-top: 2vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
         }
         .time {
             display: inline-block;
-            margin: 0 10px;
+            margin: 0 2vw;
             text-align: center;
-            width: 100px;
-            height: 100px;
+            width: 10vw; /* Usar vw para ancho proporcional */
+            height: 10vw; /* Usar vw para altura proporcional */
             background-color: #02d609;
             color: #000000;
-            border-radius: 5px;
-            line-height: 100px;
-            font-size: 60px;
+            border-radius: 1vw; /* Bordes proporcionalmente redondeados */
+            line-height: 10vw; /* Céntrico verticalmente */
+            font-size: 6vw; /* Tamaño del número */
             font-weight: 900;
         }
         .label {
             display: block;
-            font-size: 20px;
+            font-size: 2vw;
             color: #ffffff;
-            margin-top: -20px;
+            margin-top: -2vh;
         }
         .separator {
             display: inline-block;
-            font-size: 50px;
+            font-size: 7vw;
             color: #ffffff;
             vertical-align: top;
+            margin: 0 2vw;
         }
         .heading {
-            font-size: 24px;
+            font-size: 3vw;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 1vh;
         }
         .main-title {
-            font-size: 70px;
+            font-size: 10vw;
             font-weight: bold;
         }
         .main-title span {
             color: #02d609;
         }
         .image-container {
-            margin-top: 5px;
+            margin-top: 15vh; /* Ajusta la distancia con el contador */
+            padding-bottom: 30vh; /* Asegura espacio debajo de la imagen */
         }
         .image-container img {
-            width: 33.33%;
-            max-width: 400px;
+            width: 50vw; /* Escala proporcionalmente a la pantalla */
+            max-width: 400px; /* Máximo tamaño para no exceder en pantallas grandes */
             height: auto;
+        }
+
+        /* Asegurar que en pantallas más pequeñas se escale correctamente */
+        @media screen and (max-width: 600px) {
+            #fullscreen-toggle {
+                font-size: 6vw; /* Aumentar el botón de fullscreen en pantallas pequeñas */
+            }
+            .time {
+                width: 15vw;
+                height: 15vw;
+                line-height: 15vw;
+                font-size: 7vw;
+            }
+            .label {
+                font-size: 3vw;
+            }
+            .separator {
+                font-size: 6vw;
+            }
+            .image-container {
+                margin-top: 8vh; /* Mayor espacio para pantallas pequeñas */
+            }
         }
     </style>
 </head>
