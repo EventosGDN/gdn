@@ -4,16 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuenta regresiva</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'Poppins';
+            src: url('fonts/poppins-regular.woff2') format('woff2'),
+                 url('fonts/poppins-regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Poppins';
+            src: url('fonts/poppins-semibold.woff2') format('woff2'),
+                 url('fonts/poppins-semibold.woff') format('woff');
+            font-weight: 600;
+            font-style: normal;
+        }
+
         body {
             background-color: #000000;
             color: #ffffff;
             font-family: 'Poppins', sans-serif;
             text-align: center;
-            padding-top: 5vh; /* Ajustado para espacio proporcional arriba */
+            padding-top: 5vh;
             margin: 0;
         }
+
         #fullscreen-toggle {
             position: absolute;
             top: 2vh;
@@ -23,6 +39,7 @@
             cursor: pointer;
             z-index: 999;
         }
+
         #countdown {
             font-size: 5vw;
             margin-top: 2vh;
@@ -31,25 +48,28 @@
             align-items: center;
             flex-wrap: nowrap;
         }
+
         .time {
             display: inline-block;
             margin: 0 2vw;
             text-align: center;
-            width: 10vw; /* Usar vw para ancho proporcional */
-            height: 10vw; /* Usar vw para altura proporcional */
+            width: 10vw;
+            height: 10vw;
             background-color: #02d609;
             color: #000000;
-            border-radius: 1vw; /* Bordes proporcionalmente redondeados */
-            line-height: 10vw; /* Céntrico verticalmente */
-            font-size: 6vw; /* Tamaño del número */
+            border-radius: 1vw;
+            line-height: 10vw;
+            font-size: 6vw;
             font-weight: 900;
         }
+
         .label {
             display: block;
             font-size: 2vw;
             color: #ffffff;
             margin-top: -3vh;
         }
+
         .separator {
             display: inline-block;
             font-size: 7vw;
@@ -57,32 +77,37 @@
             vertical-align: top;
             margin: 0 0vw;
         }
+
         .heading {
             font-size: 2vw;
             font-weight: 600;
             margin-bottom: -1vh;
         }
+
         .main-title {
             font-size: 8vw;
             font-weight: bold;
         }
+
         .main-title span {
             color: #02d609;
         }
+
         .image-container {
-            margin-top: 15vh; /* Ajusta la distancia con el contador */
-            padding-bottom: 1vh; /* Asegura espacio debajo de la imagen */
-        }
-        .image-container img {
-            width: 50vw; /* Escala proporcionalmente a la pantalla */
-            max-width: 300px; /* Máximo tamaño para no exceder en pantallas grandes */
-            height: auto;
+            margin-top: 15vh;
+            padding-bottom: 1vh;
         }
 
-        /* Asegurar que en pantallas más pequeñas se escale correctamente */
+        .image-container img {
+            width: 50vw;
+            max-width: 300px;
+            height: auto;
+            loading: lazy;
+        }
+
         @media screen and (max-width: 600px) {
             #fullscreen-toggle {
-                font-size: 6vw; /* Aumentar el botón de fullscreen en pantallas pequeñas */
+                font-size: 6vw;
             }
             .time {
                 width: 15vw;
@@ -97,7 +122,7 @@
                 font-size: 6vw;
             }
             .image-container {
-                margin-top: 8vh; /* Mayor espacio para pantallas pequeñas */
+                margin-top: 8vh;
             }
         }
     </style>
@@ -132,20 +157,17 @@
     </div>
 
     <div class="image-container">
-        <img src="logo-web_nuevo.png" alt="Descripción de la imagen">
+        <img src="logo-web_nuevo.webp" alt="Descripción de la imagen">
     </div>
 
     <script>
         (function() {
-            // Fecha y hora del evento (31/10/2024 a las 08:00)
             var eventDate = new Date("Oct 31, 2024 08:00:00").getTime();
 
-            // Actualizar la cuenta regresiva cada 1 segundo
             function updateCountdown() {
                 var now = new Date().getTime();
                 var distance = eventDate - now;
 
-                // Asegurarse de que el tiempo restante sea positivo
                 if (distance < 0) {
                     distance = 0;
                 }
@@ -155,21 +177,16 @@
                 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // Mostrar el resultado en los elementos con los IDs correspondientes
                 document.getElementById("days").innerHTML = ('0' + days).slice(-2);
                 document.getElementById("hours").innerHTML = ('0' + hours).slice(-2);
                 document.getElementById("minutes").innerHTML = ('0' + minutes).slice(-2);
                 document.getElementById("seconds").innerHTML = ('0' + seconds).slice(-2);
             }
 
-            // Ejecutar la función inmediatamente
             updateCountdown();
-
-            // Volver a ejecutar la función cada segundo
             setInterval(updateCountdown, 1000);
         })();
 
-        // Función para verificar si el navegador soporta pantalla completa
         function supportsFullscreen() {
             return document.fullscreenEnabled || 
                    document.mozFullScreenEnabled || 
@@ -177,33 +194,30 @@
                    document.msFullscreenEnabled;
         }
 
-        // Funcionalidad de pantalla completa
         const fullscreenToggle = document.getElementById('fullscreen-toggle');
         let isFullscreen = false;
 
         fullscreenToggle.addEventListener('click', function() {
             if (!isFullscreen && supportsFullscreen()) {
-                // Ingresar en pantalla completa
                 if (document.documentElement.requestFullscreen) {
                     document.documentElement.requestFullscreen();
-                } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                } else if (document.documentElement.mozRequestFullScreen) { 
                     document.documentElement.mozRequestFullScreen();
-                } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                } else if (document.documentElement.webkitRequestFullscreen) { 
                     document.documentElement.webkitRequestFullscreen();
-                } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                } else if (document.documentElement.msRequestFullscreen) { 
                     document.documentElement.msRequestFullscreen();
                 }
                 isFullscreen = true;
                 fullscreenToggle.textContent = "-";
             } else {
-                // Salir de pantalla completa
                 if (document.exitFullscreen) {
                     document.exitFullscreen();
-                } else if (document.mozCancelFullScreen) { // Firefox
+                } else if (document.mozCancelFullScreen) { 
                     document.mozCancelFullScreen();
-                } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
+                } else if (document.webkitExitFullscreen) { 
                     document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) { // IE/Edge
+                } else if (document.msExitFullscreen) { 
                     document.msExitFullscreen();
                 }
                 isFullscreen = false;
