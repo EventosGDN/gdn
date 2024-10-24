@@ -5,22 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuenta regresiva</title>
     <style>
-        @font-face {
-            font-family: 'Poppins';
-            src: url('fonts/poppins-regular.woff2') format('woff2'),
-                 url('fonts/poppins-regular.woff') format('woff');
-            font-weight: 400;
-            font-style: normal;
-        }
-        
-        @font-face {
-            font-family: 'Poppins';
-            src: url('fonts/poppins-semibold.woff2') format('woff2'),
-                 url('fonts/poppins-semibold.woff') format('woff');
-            font-weight: 600;
-            font-style: normal;
-        }
-
         body {
             background-color: #000000;
             color: #ffffff;
@@ -101,21 +85,10 @@
             align-items: center;
         }
 
-        .logo-text {
-            font-size: 10vw; /* Tamaño del texto para que sea prominente */
-            font-weight: bold;
-            color: #ffffff;
-            position: relative;
-            display: inline-block;
-        }
-
-        /* Estilo para el acento circunflejo sobre la letra "A" */
-        .circumflex {
-            position: absolute;
-            top: -2vw;
-            left: 4vw;
-            font-size: 3vw;
-            color: #FFD700; /* Amarillo oscuro */
+        .image-container img {
+            width: 50vw;
+            max-width: 300px;
+            height: auto;
         }
 
         @media screen and (max-width: 600px) {
@@ -136,14 +109,6 @@
             }
             .image-container {
                 margin-top: 8vh;
-            }
-            .logo-text {
-                font-size: 15vw;
-            }
-            .circumflex {
-                top: -4vw;
-                left: 6vw;
-                font-size: 5vw;
             }
         }
     </style>
@@ -178,9 +143,7 @@
     </div>
 
     <div class="image-container">
-        <div class="logo-text">
-            ChangoM<span class="circumflex">^</span>as
-        </div>
+        <img src="logo-web_nuevo_1.png" alt="ChangoMas Logo">
     </div>
 
     <script>
